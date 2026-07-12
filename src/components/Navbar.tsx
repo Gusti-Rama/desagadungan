@@ -35,7 +35,7 @@ export default function Navbar() {
         {/* Logo / Brand */}
         <Link href="/" className="group flex items-center gap-3">
           {/* Village Icon */}
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-lg shadow-emerald-500/25 ring-1 ring-gray-100 transition-transform duration-300 group-hover:scale-105">
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-lg shadow-dark-500/25 ring-1 ring-gray-100 transition-transform duration-300 group-hover:scale-105">
             <Image
               src="/logo.png"
               alt="Logo Desa"
@@ -59,11 +59,10 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
-                isActive(link.href)
+              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${isActive(link.href)
                   ? "bg-emerald-50 text-emerald-700"
                   : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-              }`}
+                }`}
             >
               {link.label}
             </Link>
@@ -116,9 +115,8 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${
-          isMobileMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="border-t border-gray-100 bg-white/95 px-4 py-3 backdrop-blur-xl">
           {navLinks.map((link) => (
@@ -126,11 +124,10 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
-                isActive(link.href)
+              className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 ${isActive(link.href)
                   ? "bg-emerald-50 text-emerald-700"
                   : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-              }`}
+                }`}
             >
               {link.label}
             </Link>
