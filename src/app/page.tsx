@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { reader } from "@/lib/reader";
 import NewsCard from "@/components/NewsCard";
 
@@ -142,6 +143,69 @@ export default async function HomePage() {
       </section>
 
       {/* ============================================
+          VISI & MISI SECTION
+          ============================================ */}
+      <section id="visi-misi" className="py-16 sm:py-20 lg:py-24 bg-emerald-50/50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <span className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-800">
+              Arah Tujuan
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Visi & Misi
+            </h2>
+            <p className="mt-3 text-lg text-gray-600">
+              Mewujudkan Desa Gadungan yang mandiri, sejahtera, dan berbudaya
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {/* Visi */}
+            <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-emerald-100 transition-all hover:shadow-md">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3 className="mb-4 text-2xl font-bold text-gray-900">Visi</h3>
+              <p className="text-lg leading-relaxed italic text-gray-700">
+                &quot;Terwujudnya masyarakat Desa Gadungan yang sejahtera, agamis, mandiri, dan berbudaya melalui tata kelola pemerintahan yang bersih dan inovatif.&quot;
+              </p>
+            </div>
+
+            {/* Misi */}
+            <div className="rounded-3xl bg-emerald-600 p-8 text-white shadow-md ring-1 ring-emerald-500 transition-all hover:shadow-lg">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+              </div>
+              <h3 className="mb-6 text-2xl font-bold">Misi</h3>
+              <ul className="space-y-4 text-emerald-50">
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">1</span>
+                  <span>Meningkatkan kualitas pelayanan publik pemerintahan desa yang transparan dan akuntabel.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">2</span>
+                  <span>Mendorong pertumbuhan ekonomi kerakyatan berbasis potensi lokal pertanian.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">3</span>
+                  <span>Meningkatkan pembangunan infrastruktur desa yang merata dan tepat sasaran.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">4</span>
+                  <span>Membina kehidupan masyarakat yang harmonis, agamis, dan melestarikan gotong royong.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
           BERITA TERBARU SECTION
           ============================================ */}
       <section id="berita-terbaru" className="py-16 sm:py-20 lg:py-24">
@@ -243,40 +307,12 @@ export default async function HomePage() {
             </p>
           </div>
 
-          {/* Elfsight Instagram Widget Container */}
           <div
             id="instagram-widget-container"
             className="min-h-[300px] rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60"
           >
-            {/* <!-- Insert Elfsight Script Here --> */}
-            <div className="flex h-64 items-center justify-center text-center">
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1}
-                  stroke="currentColor"
-                  className="mx-auto h-12 w-12 text-gray-300"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
-                  />
-                </svg>
-                <p className="mt-4 text-sm text-gray-400">
-                  Widget Instagram Elfsight akan ditampilkan di sini.
-                  <br />
-                  Tempelkan script Elfsight di dalam div ini.
-                </p>
-              </div>
-            </div>
+            <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+            <div className="elfsight-app-d0903fd9-95b1-4ba0-b068-213aa46cbc71" data-elfsight-app-lazy></div>
           </div>
         </div>
       </section>
