@@ -2,6 +2,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { reader } from "@/lib/reader";
 import NewsCard from "@/components/NewsCard";
+import FacilitiesCarousel from "@/components/FacilitiesCarousel";
 
 /**
  * Beranda (Home Page) — The main landing page for Desa Gadungan.
@@ -203,6 +204,28 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ============================================
+          SARANA & PRASARANA SECTION
+          ============================================ */}
+      <section id="sarana-prasarana" className="bg-white py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
+              Fasilitas Desa
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Sarana & Prasarana
+            </h2>
+            <p className="mt-3 text-lg text-gray-600">
+              Fasilitas publik yang tersedia untuk mendukung kegiatan masyarakat Desa Gadungan
+            </p>
+          </div>
+        </div>
+
+        {/* Carousel Component */}
+        <FacilitiesCarousel />
       </section>
 
       {/* ============================================
