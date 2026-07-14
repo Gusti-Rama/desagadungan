@@ -2,10 +2,10 @@ import React from "react";
 
 // Placeholder data based on the provided design
 const summary = [
-  { label: "TOTAL JIWA", value: "233" },
-  { label: "KEPALA KELUARGA", value: "78" },
-  { label: "LAKI-LAKI", value: "120" },
-  { label: "PEREMPUAN", value: "113" },
+  { label: "TOTAL JIWA", value: "1459" },
+  { label: "KEPALA KELUARGA", value: "562" },
+  { label: "LAKI-LAKI", value: "705" },
+  { label: "PEREMPUAN", value: "754" },
 ];
 
 const umur = [
@@ -16,10 +16,10 @@ const umur = [
 ];
 
 const perkawinan = [
-  { label: "Kawin", value: 115, percent: 49 },
-  { label: "Belum Kawin", value: 102, percent: 44 },
-  { label: "Cerai Mati", value: 13, percent: 6 },
-  { label: "Cerai Hidup", value: 3, percent: 1 },
+  { label: "Kawin", value: 695, percent: 48 },
+  { label: "Belum Kawin", value: 610, percent: 42 },
+  { label: "Cerai Mati", value: 112, percent: 8 },
+  { label: "Cerai Hidup", value: 42, percent: 2 },
 ];
 
 const agama = [
