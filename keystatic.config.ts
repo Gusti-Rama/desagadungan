@@ -13,7 +13,7 @@ export default config({
   // Keystatic Cloud project configuration
   // Sign up at https://keystatic.cloud and link your GitHub repo
   cloud: {
-    project: "Gusti-Rama/desagadungan",
+    project: "desa-gadungan/desagadungan",
   },
   collections: {
     // =============================================
