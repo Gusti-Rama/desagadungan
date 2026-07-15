@@ -9,8 +9,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
 
-  // Trailing slashes for cleaner URLs
-  trailingSlash: true,
+  // Trailing slashes disabled to prevent breaking Keystatic OAuth callbacks
+  trailingSlash: false,
 };
 
 export default nextConfig;
