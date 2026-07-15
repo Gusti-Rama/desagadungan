@@ -3,6 +3,7 @@ import Script from "next/script";
 import { reader } from "@/lib/reader";
 import NewsCard from "@/components/NewsCard";
 import FacilitiesCarousel from "@/components/FacilitiesCarousel";
+import ScrollReveal from "@/components/ScrollReveal";
 
 /**
  * Beranda (Home Page) — The main landing page for Desa Gadungan.
@@ -59,9 +60,9 @@ export default async function HomePage() {
       >
         {/* Decorative background elements */}
         <div className="absolute inset-0">
-          <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-emerald-600/20 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-emerald-500/15 blur-3xl" />
-          <div className="absolute right-1/4 top-1/3 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-emerald-600/20 blur-3xl animate-float" />
+          <div className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-emerald-500/15 blur-3xl animate-float-delayed" />
+          <div className="absolute right-1/4 top-1/3 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl animate-float" />
           {/* Subtle grid pattern overlay */}
           <div
             className="absolute inset-0 opacity-5"
@@ -148,20 +149,23 @@ export default async function HomePage() {
           ============================================ */}
       <section id="visi-misi" className="py-16 sm:py-20 lg:py-24 bg-emerald-50/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <span className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-800">
-              Arah Tujuan
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Visi & Misi
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Mewujudkan Desa Gadungan yang mandiri, sejahtera, dan berbudaya
-            </p>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="mb-12 text-center">
+              <span className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-800">
+                Arah Tujuan
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Visi & Misi
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Mewujudkan Desa Gadungan yang mandiri, sejahtera, dan berbudaya
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Visi */}
+            <ScrollReveal variant="fade-left" delay={100}>
             <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-emerald-100 transition-all hover:shadow-md">
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
@@ -174,8 +178,10 @@ export default async function HomePage() {
                 &quot;Terwujudnya masyarakat Desa Gadungan yang sejahtera, agamis, mandiri, dan berbudaya melalui tata kelola pemerintahan yang bersih dan inovatif.&quot;
               </p>
             </div>
+            </ScrollReveal>
 
             {/* Misi */}
+            <ScrollReveal variant="fade-right" delay={200}>
             <div className="rounded-3xl bg-emerald-600 p-8 text-white shadow-md ring-1 ring-emerald-500 transition-all hover:shadow-lg">
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
@@ -202,6 +208,7 @@ export default async function HomePage() {
                 </li>
               </ul>
             </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -211,17 +218,19 @@ export default async function HomePage() {
           ============================================ */}
       <section id="sarana-prasarana" className="bg-white py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 text-center">
-            <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-              Fasilitas Desa
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Sarana & Prasarana
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Fasilitas publik yang tersedia untuk mendukung kegiatan masyarakat Desa Gadungan
-            </p>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="mb-8 text-center">
+              <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                Fasilitas Desa
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Sarana & Prasarana
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Fasilitas publik yang tersedia untuk mendukung kegiatan masyarakat Desa Gadungan
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
 
         {/* Carousel Component */}
@@ -234,17 +243,19 @@ export default async function HomePage() {
       <section id="berita-terbaru" className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="mb-12 text-center">
-            <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-              Informasi Terkini
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Berita Terbaru
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Kabar dan informasi terbaru dari Desa Gadungan
-            </p>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="mb-12 text-center">
+              <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                Informasi Terkini
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Berita Terbaru
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Kabar dan informasi terbaru dari Desa Gadungan
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* News Grid */}
           {latestNews.length > 0 ? (
@@ -318,17 +329,19 @@ export default async function HomePage() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="mb-12 text-center">
-            <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-              Media Sosial
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Galeri Instagram
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Ikuti kami di Instagram untuk informasi terbaru
-            </p>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="mb-12 text-center">
+              <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                Media Sosial
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Galeri Instagram
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Ikuti kami di Instagram untuk informasi terbaru
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div
             id="instagram-widget-container"

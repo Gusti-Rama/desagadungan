@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Demographics from "@/components/Demographics";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Profil Desa",
@@ -43,21 +44,24 @@ export default function ProfilDesaPage() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="mb-12 text-center">
-            <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-              Data & Statistik
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Statistik Desa
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Data demografis dan informasi umum Desa Gadungan
-            </p>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="mb-12 text-center">
+              <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                Data & Statistik
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Statistik Desa
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Data demografis dan informasi umum Desa Gadungan
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Stats Grid */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {/* Stat Card: Jumlah Penduduk */}
+            <ScrollReveal variant="zoom" delay={0}>
             <div className="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:ring-emerald-200">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
@@ -69,8 +73,10 @@ export default function ProfilDesaPage() {
               <p className="mt-4 text-3xl font-bold text-gray-900">1.459</p>
               <p className="mt-1 text-sm text-gray-500">Jumlah Penduduk</p>
             </div>
+            </ScrollReveal>
 
             {/* Stat Card: Jumlah RT/RW */}
+            <ScrollReveal variant="zoom" delay={100}>
             <div className="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:ring-emerald-200">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
@@ -79,11 +85,13 @@ export default function ProfilDesaPage() {
                 </svg>
               </div>
               {/* TODO: Ganti dengan data asli */}
-              <p className="mt-4 text-3xl font-bold text-gray-900">15 / 6</p>
+              <p className="mt-4 text-3xl font-bold text-gray-900">12 / 5</p>
               <p className="mt-1 text-sm text-gray-500">Jumlah RT / RW</p>
             </div>
+            </ScrollReveal>
 
             {/* Stat Card: Luas Wilayah */}
+            <ScrollReveal variant="zoom" delay={200}>
             <div className="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:ring-emerald-200">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
@@ -94,8 +102,10 @@ export default function ProfilDesaPage() {
               <p className="mt-4 text-3xl font-bold text-gray-900">~200 Ha</p>
               <p className="mt-1 text-sm text-gray-500">Luas Wilayah</p>
             </div>
+            </ScrollReveal>
 
             {/* Stat Card: Mata Pencaharian */}
+            <ScrollReveal variant="zoom" delay={300}>
             <div className="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:ring-emerald-200">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
@@ -107,6 +117,7 @@ export default function ProfilDesaPage() {
               <p className="mt-4 text-xl font-bold text-gray-900">Pedagang</p>
               <p className="mt-1 text-sm text-gray-500">Mata Pencaharian Utama</p>
             </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -122,17 +133,19 @@ export default function ProfilDesaPage() {
       <section id="peta-lokasi" className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="mb-12 text-center">
-            <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-              Lokasi & Wilayah
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Peta Desa Gadungan
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Jelajahi lokasi fisik, batas administrasi, dan potensi UMKM di Desa Gadungan.
-            </p>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="mb-12 text-center">
+              <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                Lokasi & Wilayah
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Peta Desa Gadungan
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Jelajahi lokasi fisik, batas administrasi, dan potensi UMKM di Desa Gadungan.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Google Maps Embed */}
           <div className="mb-12 overflow-hidden rounded-2xl shadow-lg ring-1 ring-gray-200/60">
