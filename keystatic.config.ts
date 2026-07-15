@@ -2,20 +2,18 @@ import { config, fields, collection } from "@keystatic/core";
 
 // Determine storage mode based on environment
 // - 'local' for development (reads/writes files on disk)
-// - 'cloud' for production (uses Keystatic Cloud hosted admin)
+// - 'github' for production (connects directly to GitHub repo)
 const storageKind =
-  process.env.NODE_ENV === "development" ? "local" : "cloud";
+  process.env.NODE_ENV === "development" ? "local" : "github";
 
 export default config({
   storage:
     storageKind === "local"
       ? { kind: "local" as const }
-      : { kind: "cloud" as const },
-  // Keystatic Cloud project configuration
-  // Sign up at https://keystatic.cloud and link your GitHub repo
-  cloud: {
-    project: "your-team/your-project", // TODO: Replace with your Keystatic Cloud project slug
-  },
+      : {
+          kind: "github" as const,
+          repo: "Gusti-Rama/desagadungan",
+        },
   collections: {
     // =============================================
     // Berita (News) Collection
