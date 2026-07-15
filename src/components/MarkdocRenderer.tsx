@@ -1,8 +1,8 @@
-import Markdoc from "@markdoc/markdoc";
+import Markdoc, { Node } from "@markdoc/markdoc";
 import React from "react";
 
 interface MarkdocRendererProps {
-  content: string;
+  content: string | Node | any;
 }
 
 /**
@@ -12,8 +12,8 @@ interface MarkdocRendererProps {
  * This component runs on the server at build time for optimal performance.
  */
 export default function MarkdocRenderer({ content }: MarkdocRendererProps) {
-  // 1. Parse the raw string into a Markdoc AST
-  const ast = Markdoc.parse(content);
+  // 1. If it's a string, parse it. Otherwise, it's already an AST Node from Keystatic.
+  const ast = typeof content === "string" ? Markdoc.parse(content) : content;
 
   // 2. Transform the AST (with optional custom node/tag config)
   const transformed = Markdoc.transform(ast, {
