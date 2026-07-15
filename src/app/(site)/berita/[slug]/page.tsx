@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import { createReader } from "@keystatic/core/reader";
-import keystaticConfig from "../../../../keystatic.config";
+import keystaticConfig from "../../../../../keystatic.config";
 import MarkdocRenderer from "@/components/MarkdocRenderer";
 
 /**
