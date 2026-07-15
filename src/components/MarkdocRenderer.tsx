@@ -12,8 +12,8 @@ interface MarkdocRendererProps {
  * This component runs on the server at build time for optimal performance.
  */
 export default function MarkdocRenderer({ content }: MarkdocRendererProps) {
-  // 1. If it's a string, parse it. Otherwise, it's already an AST Node from Keystatic.
-  const ast = typeof content === "string" ? Markdoc.parse(content) : content;
+  // 1. If it's a string, parse it. If it's from Keystatic, extract the `node` property.
+  const ast = typeof content === "string" ? Markdoc.parse(content) : (content?.node || content);
 
   // 2. Transform the AST (with optional custom node/tag config)
   const transformed = Markdoc.transform(ast, {
