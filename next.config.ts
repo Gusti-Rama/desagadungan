@@ -1,15 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Static export for Cloudflare Pages deployment
-  output: "export",
+  // Vercel natively supports Next.js, no need for static export
+  // which breaks Keystatic API routes.
 
-  // Required for static export — Next.js image optimization needs a server
+  // Required if using static export, but safe to keep for standard builds
   images: {
     unoptimized: true,
   },
 
-  // Trailing slashes for cleaner URLs on static hosts
+  // Trailing slashes for cleaner URLs
   trailingSlash: true,
 };
 

@@ -1,10 +1,15 @@
 import { config, fields, collection } from "@keystatic/core";
 
+// - 'local' for development
 // - 'cloud' for production (uses Keystatic Cloud hosted admin)
-// We must use 'cloud' in all environments because static export (output: 'export')
-// does not support Next.js API Routes, which are required for 'local' mode.
+const storageKind =
+  process.env.NODE_ENV === "development" ? "local" : "cloud";
+
 export default config({
-  storage: { kind: "cloud" as const },
+  storage:
+    storageKind === "local"
+      ? { kind: "local" as const }
+      : { kind: "cloud" as const },
   // Keystatic Cloud project configuration
   // Sign up at https://keystatic.cloud and link your GitHub repo
   cloud: {
