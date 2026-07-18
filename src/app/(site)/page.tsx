@@ -2,7 +2,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { reader } from "@/lib/reader";
 import NewsCard from "@/components/NewsCard";
-import FacilitiesCarousel from "@/components/FacilitiesCarousel";
+import ScrollReveal from "@/components/ScrollReveal";
 
 /**
  * Beranda (Home Page) — The main landing page for Desa Gadungan.
@@ -59,9 +59,9 @@ export default async function HomePage() {
       >
         {/* Decorative background elements */}
         <div className="absolute inset-0">
-          <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-emerald-600/20 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-emerald-500/15 blur-3xl" />
-          <div className="absolute right-1/4 top-1/3 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-emerald-600/20 blur-3xl animate-float" />
+          <div className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-emerald-500/15 blur-3xl animate-float-delayed" />
+          <div className="absolute right-1/4 top-1/3 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl animate-float" />
           {/* Subtle grid pattern overlay */}
           <div
             className="absolute inset-0 opacity-5"
@@ -144,88 +144,53 @@ export default async function HomePage() {
       </section>
 
       {/* ============================================
-          VISI & MISI SECTION
+          PETA DESA GADUNGAN SECTION
           ============================================ */}
-      <section id="visi-misi" className="py-16 sm:py-20 lg:py-24 bg-emerald-50/50">
+      <section id="peta-desa" className="py-16 sm:py-20 lg:py-24 bg-emerald-50/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <span className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-800">
-              Arah Tujuan
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Visi & Misi
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Mewujudkan Desa Gadungan yang mandiri, sejahtera, dan berbudaya
-            </p>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            {/* Visi */}
-            <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-emerald-100 transition-all hover:shadow-md">
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="mb-4 text-2xl font-bold text-gray-900">Visi</h3>
-              <p className="text-lg leading-relaxed italic text-gray-700">
-                &quot;Terwujudnya masyarakat Desa Gadungan yang sejahtera, agamis, mandiri, dan berbudaya melalui tata kelola pemerintahan yang bersih dan inovatif.&quot;
+          <ScrollReveal variant="fade-up">
+            <div className="mb-12 text-center">
+              <span className="inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-800">
+                Lokasi & Wilayah
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Peta Desa Gadungan
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Jelajahi lokasi Desa Gadungan, Kecamatan Wedi, Kabupaten Klaten
               </p>
             </div>
+          </ScrollReveal>
 
-            {/* Misi */}
-            <div className="rounded-3xl bg-emerald-600 p-8 text-white shadow-md ring-1 ring-emerald-500 transition-all hover:shadow-lg">
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                </svg>
-              </div>
-              <h3 className="mb-6 text-2xl font-bold">Misi</h3>
-              <ul className="space-y-4 text-emerald-50">
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">1</span>
-                  <span>Meningkatkan kualitas pelayanan publik pemerintahan desa yang transparan dan akuntabel.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">2</span>
-                  <span>Mendorong pertumbuhan ekonomi kerakyatan berbasis potensi lokal pertanian.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">3</span>
-                  <span>Meningkatkan pembangunan infrastruktur desa yang merata dan tepat sasaran.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">4</span>
-                  <span>Membina kehidupan masyarakat yang harmonis, agamis, dan melestarikan gotong royong.</span>
-                </li>
-              </ul>
+          <ScrollReveal variant="zoom">
+            <div className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-gray-200/60">
+              <iframe
+                id="google-maps-embed-beranda"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15812.5!2d110.58!3d-7.72!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a3e6d24d2fcdf%3A0x7a5d3f76f0b1c5a0!2sGadungan%2C+Wedi%2C+Klaten!5e0!3m2!1sid!2sid!4v1700000000000"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Peta Lokasi Desa Gadungan"
+                className="w-full"
+              />
             </div>
+          </ScrollReveal>
+
+          <div className="mt-6 text-center">
+            <Link
+              href="/peta/desa-gadungan"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+            >
+              Lihat peta selengkapnya
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+              </svg>
+            </Link>
           </div>
         </div>
-      </section>
-
-      {/* ============================================
-          SARANA & PRASARANA SECTION
-          ============================================ */}
-      <section id="sarana-prasarana" className="bg-white py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 text-center">
-            <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-              Fasilitas Desa
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Sarana & Prasarana
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Fasilitas publik yang tersedia untuk mendukung kegiatan masyarakat Desa Gadungan
-            </p>
-          </div>
-        </div>
-
-        {/* Carousel Component */}
-        <FacilitiesCarousel />
       </section>
 
       {/* ============================================
@@ -234,17 +199,19 @@ export default async function HomePage() {
       <section id="berita-terbaru" className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="mb-12 text-center">
-            <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-              Informasi Terkini
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Berita Terbaru
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Kabar dan informasi terbaru dari Desa Gadungan
-            </p>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="mb-12 text-center">
+              <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                Informasi Terkini
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Berita Terbaru
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Kabar dan informasi terbaru dari Desa Gadungan
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* News Grid */}
           {latestNews.length > 0 ? (
@@ -318,17 +285,19 @@ export default async function HomePage() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="mb-12 text-center">
-            <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-              Media Sosial
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Galeri Instagram
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Ikuti kami di Instagram untuk informasi terbaru
-            </p>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="mb-12 text-center">
+              <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                Media Sosial
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Galeri Instagram
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Ikuti kami di Instagram untuk informasi terbaru
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div
             id="instagram-widget-container"

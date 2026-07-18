@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import { createReader } from "@keystatic/core/reader";
-import keystaticConfig from "../../../../keystatic.config";
+import keystaticConfig from "../../../../../keystatic.config";
 import MarkdocRenderer from "@/components/MarkdocRenderer";
 
 /**
@@ -91,14 +91,12 @@ export default async function BeritaDetailPage({
       })
     : "";
 
-  // Get the raw content string for Markdoc rendering
-  let contentString = "";
+  // Get the raw content for Markdoc rendering
+  let contentData: any = null;
   try {
-    const rawContent = await entry.content();
-    contentString =
-      typeof rawContent === "string" ? rawContent : String(rawContent);
+    contentData = await entry.content();
   } catch {
-    contentString = "";
+    contentData = null;
   }
 
   return (
@@ -158,8 +156,8 @@ export default async function BeritaDetailPage({
           )}
 
           {/* Markdoc Content */}
-          {contentString ? (
-            <MarkdocRenderer content={contentString} />
+          {contentData ? (
+            <MarkdocRenderer content={contentData} />
           ) : (
             <p className="italic text-gray-500">
               Konten berita belum tersedia.

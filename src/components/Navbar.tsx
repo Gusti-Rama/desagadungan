@@ -3,27 +3,56 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // Navigation links configuration
 const navLinks = [
   { href: "/", label: "Beranda" },
   { href: "/profil", label: "Profil Desa" },
+  { href: "/data-penduduk", label: "Data Penduduk" },
+];
+
+// Peta dropdown items
+const petaLinks = [
+  { href: "/peta/desa-gadungan", label: "Peta Desa Gadungan" },
+  { href: "/peta/administrasi", label: "Peta Administrasi" },
+  { href: "/peta/potensi-umkm", label: "Peta Potensi UMKM" },
+];
+
+const trailingLinks = [
+  { href: "/sarana-prasarana", label: "Sarana & Prasarana" },
   { href: "/berita", label: "Berita" },
 ];
 
 /**
  * Navbar — Responsive navigation bar with glassmorphism effect.
- * Includes mobile hamburger menu and active link highlighting.
+ * Includes mobile hamburger menu, active link highlighting, and a
+ * "Peta" dropdown for the various village maps.
  */
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPetaDropdownOpen, setIsPetaDropdownOpen] = useState(false);
+  const [isMobilePetaOpen, setIsMobilePetaOpen] = useState(false);
+  const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Check if a link is active based on current path
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
+  };
+
+  const isPetaActive = pathname.startsWith("/peta");
+
+  const handleMouseEnter = () => {
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
+    setIsPetaDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeout.current = setTimeout(() => {
+      setIsPetaDropdownOpen(false);
+    }, 150);
   };
 
   return (
@@ -56,6 +85,72 @@ export default function Navbar() {
         {/* Desktop Navigation Links */}
         <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${isActive(link.href)
+                  ? "bg-emerald-50 text-emerald-700"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          {/* Peta Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button
+              type="button"
+              onClick={() => setIsPetaDropdownOpen((prev) => !prev)}
+              aria-expanded={isPetaDropdownOpen}
+              className={`flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${isPetaActive
+                  ? "bg-emerald-50 text-emerald-700"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                }`}
+            >
+              Peta
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className={`h-4 w-4 transition-transform duration-200 ${isPetaDropdownOpen ? "rotate-180" : ""}`}
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.148l3.71-3.918a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+
+            {/* Dropdown Panel */}
+            <div
+              className={`absolute left-0 top-full mt-1 w-60 overflow-hidden rounded-xl border border-gray-100 bg-white py-2 shadow-lg ring-1 ring-gray-200/60 transition-all duration-200 ${isPetaDropdownOpen
+                  ? "translate-y-0 opacity-100"
+                  : "pointer-events-none -translate-y-1 opacity-0"
+                }`}
+            >
+              {petaLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsPetaDropdownOpen(false)}
+                  className={`block px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${isActive(link.href)
+                      ? "bg-emerald-50 text-emerald-700"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {trailingLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -115,11 +210,71 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+        className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
           }`}
       >
         <div className="border-t border-gray-100 bg-white/95 px-4 py-3 backdrop-blur-xl">
           {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 ${isActive(link.href)
+                  ? "bg-emerald-50 text-emerald-700"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          {/* Mobile Peta Dropdown */}
+          <button
+            type="button"
+            onClick={() => setIsMobilePetaOpen((prev) => !prev)}
+            aria-expanded={isMobilePetaOpen}
+            className={`flex w-full items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 ${isPetaActive
+                ? "bg-emerald-50 text-emerald-700"
+                : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+              }`}
+          >
+            Peta
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className={`h-4 w-4 transition-transform duration-200 ${isMobilePetaOpen ? "rotate-180" : ""}`}
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.148l3.71-3.918a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+          <div
+            className={`overflow-hidden pl-4 transition-all duration-300 ease-in-out ${isMobilePetaOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+              }`}
+          >
+            {petaLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsMobilePetaOpen(false);
+                }}
+                className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 ${isActive(link.href)
+                    ? "bg-emerald-50 text-emerald-700"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {trailingLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
