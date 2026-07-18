@@ -1,216 +1,213 @@
-import type { Metadata } from "next";
-import Demographics from "@/components/Demographics";
-import ScrollReveal from "@/components/ScrollReveal";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Profil Desa",
-  description:
-    "Profil lengkap Desa Gadungan — statistik penduduk, informasi wilayah, dan lokasi desa di Kecamatan Wedi, Kabupaten Klaten.",
-};
+import { useState } from "react";
+import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
+import { umkmData } from "@/data/umkm";
 
 /**
- * Profil Desa Page — Village profile with hardcoded statistics,
- * and embedded Google Maps.
- *
- * All data here is placeholder — edit the values directly in this file or Demographics component.
+ * UMKM Catalog Page — Grid listing of village small businesses
+ * with search filtering, photo placeholders, and detail page links.
  */
-export default function ProfilDesaPage() {
+export default function UmkmPage() {
+  const [search, setSearch] = useState("");
+
+  const filtered = umkmData.filter(
+    (item) =>
+      item.name.toLowerCase().includes(search.toLowerCase()) ||
+      item.category.toLowerCase().includes(search.toLowerCase()) ||
+      item.owner.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <>
       {/* ============================================
           PAGE HEADER
           ============================================ */}
-      <section className="bg-gradient-to-br from-emerald-800 to-emerald-900 py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-800 via-emerald-900 to-emerald-950 py-16 sm:py-20">
+        {/* Decorative background */}
+        <div className="pointer-events-none absolute inset-0 opacity-10">
+          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-emerald-400 blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 h-56 w-56 rounded-full bg-emerald-300 blur-3xl" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-200 backdrop-blur-sm ring-1 ring-white/20">
-            Tentang Kami
+            Katalog UMKM
           </span>
           <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-            Profil Desa Gadungan
+            UMKM Desa Gadungan
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-emerald-100/80">
-            Mengenal lebih dekat Desa Gadungan, Kecamatan Wedi, Kabupaten
-            Klaten, Jawa Tengah.
+            Dukung pengusaha lokal Desa Gadungan, Kecamatan Wedi, Kabupaten
+            Klaten. Temukan produk dan jasa berkualitas dari warga desa.
           </p>
         </div>
       </section>
 
       {/* ============================================
-          STATISTIK DESA
+          SEARCH & CATALOG
           ============================================ */}
-      <section
-        id="statistik-desa"
-        className="border-t border-gray-100 bg-white py-16 sm:py-20"
-      >
+      <section className="bg-gray-50 py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
+          {/* Search Bar */}
           <ScrollReveal variant="fade-up">
-            <div className="mb-12 text-center">
-              <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-                Data & Statistik
-              </span>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Statistik Desa
-              </h2>
-              <p className="mt-3 text-lg text-gray-600">
-                Data demografis dan informasi umum Desa Gadungan
-              </p>
+            <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Katalog UMKM
+                </h2>
+                <p className="mt-1 text-sm text-gray-500">
+                  {filtered.length} usaha ditemukan
+                </p>
+              </div>
+              <div className="relative w-full sm:w-80">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="h-4 w-4 text-gray-400"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  id="search-umkm"
+                  type="text"
+                  placeholder="Cari UMKM..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-full rounded-xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm text-gray-900 shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/20"
+                />
+              </div>
             </div>
           </ScrollReveal>
 
-          {/* Stats Grid */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Stat Card: Jumlah Penduduk */}
-            <ScrollReveal variant="zoom" delay={0}>
-            <div className="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:ring-emerald-200">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-                  <path fillRule="evenodd" d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z" clipRule="evenodd" />
-                  <path d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121ZM19.573 15.905a.563.563 0 0 0 .373.486l.115.04c.65.22 1.174.645 1.433 1.245a7.066 7.066 0 0 0-.495-1.633.563.563 0 0 0-.486-.373l-.121.01a8.287 8.287 0 0 0-.82.225Z" />
-                </svg>
-              </div>
-              {/* TODO: Ganti dengan data asli */}
-              <p className="mt-4 text-3xl font-bold text-gray-900">1.459</p>
-              <p className="mt-1 text-sm text-gray-500">Jumlah Penduduk</p>
+          {/* UMKM Grid */}
+          {filtered.length > 0 ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((item, index) => (
+                <ScrollReveal
+                  key={item.slug}
+                  variant="zoom"
+                  delay={index * 80}
+                >
+                  <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200/60 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10 hover:ring-emerald-200">
+                    {/* Image / Placeholder */}
+                    <div className="relative h-52 w-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-50">
+                      {item.image ? (
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-2">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1}
+                            stroke="currentColor"
+                            className="h-10 w-10 text-gray-300"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"
+                            />
+                          </svg>
+                          <span className="text-xs text-gray-400">
+                            Tanpa Foto
+                          </span>
+                        </div>
+                      )}
+                      {/* Category Badge */}
+                      <span className="absolute right-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-emerald-700 shadow-sm backdrop-blur-sm">
+                        {item.category}
+                      </span>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="text-lg font-bold text-gray-900 transition-colors group-hover:text-emerald-700">
+                        {item.name}
+                      </h3>
+                      <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">
+                        {item.shortDesc}
+                      </p>
+
+                      {/* Location */}
+                      <div className="mt-4 flex items-center gap-1.5 text-xs text-gray-500">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          className="h-3.5 w-3.5 shrink-0 text-gray-400"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.145c.182-.1.425-.247.717-.446.581-.4 1.328-.992 2.059-1.786C14.594 15.16 16 12.81 16 10a6 6 0 0 0-12 0c0 2.81 1.406 5.16 2.61 6.545.73.794 1.477 1.387 2.058 1.786.292.2.535.346.717.446a5.714 5.714 0 0 0 .299.154ZM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>{item.location}</span>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="mt-5 flex gap-3">
+                        <a
+                          href={`https://wa.me/${item.whatsapp}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 rounded-xl border border-gray-200 bg-white py-2.5 text-center text-sm font-semibold text-gray-700 transition-all duration-200 hover:border-gray-300 hover:bg-gray-50"
+                        >
+                          Hubungi
+                        </a>
+                        <Link
+                          href={`/umkm/${item.slug}`}
+                          className="flex-1 rounded-xl bg-emerald-600 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-emerald-700 hover:shadow-md"
+                        >
+                          Profil Lengkap
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
-            </ScrollReveal>
-
-            {/* Stat Card: Jumlah RT/RW */}
-            <ScrollReveal variant="zoom" delay={100}>
-            <div className="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:ring-emerald-200">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-                  <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
-                  <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a.752.752 0 0 0 .091-.086L12 5.432Z" />
-                </svg>
-              </div>
-              {/* TODO: Ganti dengan data asli */}
-              <p className="mt-4 text-3xl font-bold text-gray-900">12 / 5</p>
-              <p className="mt-1 text-sm text-gray-500">Jumlah RT / RW</p>
-            </div>
-            </ScrollReveal>
-
-            {/* Stat Card: Luas Wilayah */}
-            <ScrollReveal variant="zoom" delay={200}>
-            <div className="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:ring-emerald-200">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-                  <path fillRule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clipRule="evenodd" />
-                </svg>
-              </div>
-              {/* TODO: Ganti dengan data asli */}
-              <p className="mt-4 text-3xl font-bold text-gray-900">~200 Ha</p>
-              <p className="mt-1 text-sm text-gray-500">Luas Wilayah</p>
-            </div>
-            </ScrollReveal>
-
-            {/* Stat Card: Mata Pencaharian */}
-            <ScrollReveal variant="zoom" delay={300}>
-            <div className="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:ring-emerald-200">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-                  <path fillRule="evenodd" d="M7.5 5.25a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v.205c.933.085 1.857.197 2.774.334 1.454.218 2.476 1.483 2.476 2.917v3.033c0 1.211-.734 2.352-1.936 2.752A24.726 24.726 0 0 1 12 15.75c-2.73 0-5.357-.442-7.814-1.259-1.202-.4-1.936-1.541-1.936-2.752V8.706c0-1.434 1.022-2.7 2.476-2.917A48.814 48.814 0 0 1 7.5 5.455V5.25Zm7.5 0v.09a49.488 49.488 0 0 0-6 0v-.09a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5-1.5Zm-3 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
-                  <path d="M3 18.4v-2.796a4.3 4.3 0 0 0 .713.31A26.226 26.226 0 0 0 12 17.25c2.892 0 5.68-.468 8.287-1.335.252-.084.49-.189.713-.311V18.4c0 1.452-1.047 2.728-2.523 2.923-2.12.282-4.282.427-6.477.427a49.19 49.19 0 0 1-6.477-.427C4.047 21.128 3 19.852 3 18.4Z" />
-                </svg>
-              </div>
-              {/* TODO: Ganti dengan data asli */}
-              <p className="mt-4 text-xl font-bold text-gray-900">Pedagang</p>
-              <p className="mt-1 text-sm text-gray-500">Mata Pencaharian Utama</p>
-            </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================
-          STATISTIK DEMOGRAFI WARGA
-          ============================================ */}
-      <Demographics />
-
-      {/* ============================================
-          PETA LOKASI & PETA KHUSUS
-          ============================================ */}
-      <section id="peta-lokasi" className="py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <ScrollReveal variant="fade-up">
-            <div className="mb-12 text-center">
-              <span className="inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
-                Lokasi & Wilayah
-              </span>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Peta Desa Gadungan
-              </h2>
-              <p className="mt-3 text-lg text-gray-600">
-                Jelajahi lokasi fisik, batas administrasi, dan potensi UMKM di Desa Gadungan.
+          ) : (
+            /* Empty State */
+            <div className="flex flex-col items-center justify-center rounded-2xl bg-white py-20 text-center shadow-sm ring-1 ring-gray-200/60">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1}
+                stroke="currentColor"
+                className="mb-4 h-16 w-16 text-gray-300"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+              <h3 className="text-lg font-semibold text-gray-700">
+                Tidak ada UMKM ditemukan
+              </h3>
+              <p className="mt-2 text-sm text-gray-500">
+                Coba ubah kata kunci pencarian Anda.
               </p>
             </div>
-          </ScrollReveal>
-
-          {/* Google Maps Embed */}
-          <div className="mb-12 overflow-hidden rounded-2xl shadow-lg ring-1 ring-gray-200/60">
-            <iframe
-              id="google-maps-embed"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15812.5!2d110.58!3d-7.72!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a3e6d24d2fcdf%3A0x7a5d3f76f0b1c5a0!2sGadungan%2C+Wedi%2C+Klaten!5e0!3m2!1sid!2sid!4v1700000000000"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Peta Lokasi Desa Gadungan"
-              className="w-full"
-            />
-          </div>
-
-          {/* Peta Administrasi & UMKM (PDF Embeds) */}
-          <div className="flex flex-col gap-12">
-            {/* Peta Administrasi */}
-            <div className="flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm ring-1 ring-gray-200/60">
-              <div className="border-b border-gray-100 bg-gray-50 px-4 py-3">
-                <h3 className="font-bold text-gray-900">Peta Administrasi</h3>
-              </div>
-              {/* PDF Container - Large height for maps */}
-              <div className="relative flex h-[600px] w-full flex-col items-center justify-center bg-gray-100/50 p-6 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="mb-3 h-12 w-12 text-gray-300">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                </svg>
-                <p className="mb-2 text-sm text-gray-500">
-                  Area ini akan menampilkan dokumen PDF Peta Administrasi secara langsung.
-                </p>
-                {/* 
-                  TODO: Ganti div ini dengan iframe di bawah saat PDF sudah siap dan ditaruh di folder public/ 
-                  <iframe src="/peta-administrasi.pdf" className="absolute inset-0 w-full h-full" />
-                */}
-                <code className="rounded bg-emerald-50 px-2 py-1 text-xs text-emerald-600">
-                  &lt;iframe src=&quot;/peta-administrasi.pdf&quot; /&gt;
-                </code>
-              </div>
-            </div>
-
-            {/* Peta UMKM */}
-            <div className="flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm ring-1 ring-gray-200/60">
-              <div className="border-b border-gray-100 bg-gray-50 px-4 py-3">
-                <h3 className="font-bold text-gray-900">Peta Potensi UMKM</h3>
-              </div>
-              {/* PDF Container - Large height for maps */}
-              <div className="relative flex h-[600px] w-full flex-col items-center justify-center bg-gray-100/50 p-6 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="mb-3 h-12 w-12 text-gray-300">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                </svg>
-                <p className="mb-2 text-sm text-gray-500">
-                  Area ini akan menampilkan dokumen PDF Peta UMKM secara langsung.
-                </p>
-                {/* 
-                  TODO: Ganti div ini dengan iframe di bawah saat PDF sudah siap dan ditaruh di folder public/ 
-                  <iframe src="/peta-umkm.pdf" className="absolute inset-0 w-full h-full" />
-                */}
-                <code className="rounded bg-emerald-50 px-2 py-1 text-xs text-emerald-600">
-                  &lt;iframe src=&quot;/peta-umkm.pdf&quot; /&gt;
-                </code>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </section>
     </>
