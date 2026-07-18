@@ -84,7 +84,7 @@ export default config({
           }),
           {
             label: "Galeri Foto (Opsional)",
-            itemLabel: (props) => props.value || "Foto",
+            itemLabel: (props) => props.value ? props.value.filename : "Foto",
           }
         ),
       },
