@@ -1,83 +1,13 @@
 "use client";
 
 import { useRef } from "react";
+import { facilities } from "../data/facilities";
 
-const facilities = [
-  {
-    id: "gor",
-    title: "Gedung Olahraga (GOR)",
-    description:
-      "Gedung serbaguna untuk berbagai kegiatan olahraga dan pertemuan warga.",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6.75h1.5m-1.5 3h1.5m-1.5 3h1.5M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"
-      />
-    ),
-  },
-  {
-    id: "tenis",
-    title: "Lapangan Tenis",
-    description:
-      "Fasilitas lapangan tenis outdoor untuk sarana olahraga dan rekreasi warga.",
-    icon: (
-      <>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3.375 7.5h17.25c.621 0 1.125.504 1.125 1.125v7.5c0 .621-.504 1.125-1.125 1.125H3.375c-.621 0-1.125-.504-1.125-1.125v-7.5c0-.621.504-1.125 1.125-1.125z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 7.5v9M12 12h9"
-        />
-      </>
-    ),
-  },
-  {
-    id: "bulutangkis",
-    title: "Bulu Tangkis",
-    description:
-      "Lapangan bulu tangkis yang dapat digunakan untuk latihan dan turnamen antar warga.",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.834.166-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-5.428-1.59-1.59"
-      />
-    ),
-  },
-  {
-    id: "studio",
-    title: "Studio Band",
-    description:
-      "Fasilitas studio musik untuk menyalurkan bakat dan kreativitas pemuda desa.",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 19.5V15m6 4.5v-4.5M9 15l-3-3m3 3l3-3m3 3l-3-3m3 3l3-3M9 15v-9a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v9M3 15v-9a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v9"
-      />
-    ),
-  },
-  {
-    id: "placeholder",
-    title: "Fasilitas Baru",
-    description:
-      "Fasilitas lainnya yang akan segera ditambahkan di masa mendatang.",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 4.5v15m7.5-7.5h-15"
-      />
-    ),
-  },
-];
+interface FacilitiesCarouselProps {
+  limit?: number;
+}
 
-export default function FacilitiesCarousel() {
+export default function FacilitiesCarousel({ limit }: FacilitiesCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -89,6 +19,8 @@ export default function FacilitiesCarousel() {
       });
     }
   };
+
+  const displayFacilities = limit ? facilities.slice(0, limit) : facilities;
 
   return (
     <div className="relative">
@@ -119,7 +51,7 @@ export default function FacilitiesCarousel() {
         ref={scrollRef}
         className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 px-4 sm:px-6 lg:px-8 lg:mx-auto lg:max-w-7xl"
       >
-        {facilities.map((fac) => (
+        {displayFacilities.map((fac) => (
           <div
             key={fac.id}
             className="group relative flex w-[280px] shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:shadow-md sm:w-[320px]"

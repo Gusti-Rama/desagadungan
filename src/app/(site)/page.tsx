@@ -144,6 +144,7 @@ export default async function HomePage() {
         </div>
       </section>
 
+
       {/* ============================================
           VISI & MISI SECTION
           ============================================ */}
@@ -163,51 +164,224 @@ export default async function HomePage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid gap-8 lg:grid-cols-2">
-            {/* Visi */}
-            <ScrollReveal variant="fade-left" delay={100}>
-            <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-emerald-100 transition-all hover:shadow-md">
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
+          {/* Visi */}
+          <ScrollReveal variant="fade-up" delay={100}>
+            <div className="mb-10 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-emerald-100 transition-all hover:shadow-md sm:p-10">
+              <div className="mb-6 flex items-center gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Visi</h3>
               </div>
-              <h3 className="mb-4 text-2xl font-bold text-gray-900">Visi</h3>
               <p className="text-lg leading-relaxed italic text-gray-700">
-                &quot;Terwujudnya masyarakat Desa Gadungan yang sejahtera, agamis, mandiri, dan berbudaya melalui tata kelola pemerintahan yang bersih dan inovatif.&quot;
+                &quot;Terwujudnya pelayanan publik yang transparan, akuntabilitas menuju masyarakat desa Gadungan yang maju, mandiri dan berdaya saing.&quot;
               </p>
             </div>
+          </ScrollReveal>
+
+          {/* Misi */}
+          <ScrollReveal variant="fade-up" delay={200}>
+            <div className="rounded-3xl bg-emerald-600 p-8 text-white shadow-md ring-1 ring-emerald-500 sm:p-10">
+              <div className="mb-8 flex items-center gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold">Misi</h3>
+              </div>
+
+              <ol className="space-y-6 text-emerald-50">
+                {/* Misi 1 */}
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">1</span>
+                  <span>Meningkatkan sumber daya manusia yang berkualitas dan kwantitas yang agamis yang nyaman dengan memakmurkan tempat peribatan di Desa Gadungan.</span>
+                </li>
+
+                {/* Misi 2 */}
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">2</span>
+                  <span>Memprogramkan peningkatan kwalitas Sumber Daya Manusia.</span>
+                </li>
+
+                {/* Misi 3 */}
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">3</span>
+                  <span>Memaksimalkan program pemerintah bidang pendidikan sehingga terwujud masyarakat yang cerdas.</span>
+                </li>
+
+                {/* Misi 4 */}
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">4</span>
+                  <div>
+                    <span>Pemberdayaan potensi yang ada ditengah masyarakat Desa Gadungan.</span>
+                    <ul className="mt-2 space-y-1.5 pl-2 text-sm text-emerald-100">
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">a.</span>
+                        <span>Pemberdayaan SDM terutama perempuan dan kerakyatan.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">b.</span>
+                        <span>Pemberdayaan SDA dengan mengedepankan pemberdayaan ekonomi kerakyatan.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                {/* Misi 5 */}
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">5</span>
+                  <div>
+                    <span>Mengoptimalkan penyelenggaraan pemerintah desa Gadungan meliputi:</span>
+                    <ul className="mt-2 space-y-1.5 pl-2 text-sm text-emerald-100">
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">a.</span>
+                        <span>Pemerintah yang transparan, adil, cepat, tepat, dan benar.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">b.</span>
+                        <span>Pelaksanaan pembangunan Desa Gadungan yang berkesinambungan dan mengedepankan masyarakat dengan gotong royong.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                {/* Misi 6 */}
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">6</span>
+                  <span>Melanjutkan program-program pemerintah Desa Gadungan sebelumnya sebagaimana yang tercantum pada data dokumen RPJMDes Desa Gadungan.</span>
+                </li>
+
+                {/* Misi 7 */}
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">7</span>
+                  <div>
+                    <span>Menciptakan kondisi masyarakat Desa Gadungan yang aman, tertib, rukun dalam bermasyarakat dengan mengedepankan prinsip-prinsip:</span>
+                    <ul className="mt-2 space-y-1.5 pl-2 text-sm text-emerald-100">
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">a.</span>
+                        <span>Saling bersinergi dengan bergotong royong.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">b.</span>
+                        <span>Menjunjung prinsip transparansi pemerintah desa Gadungan.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                {/* Misi 8 */}
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">8</span>
+                  <div>
+                    <span>Optimalisasi penyelenggaraan pemerintah Desa Gadungan yang meliputi:</span>
+                    <ul className="mt-2 space-y-1.5 pl-2 text-sm text-emerald-100">
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">a.</span>
+                        <span>Pemerintahan yang akuntabilitas dan keterbukaan.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">b.</span>
+                        <span>Pelayanan kepada masyarakat yang prima, cepat, benar pada sasaran tanpa bayar.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">c.</span>
+                        <span>Pelaksanaan pembangunan yang berkesinambungan dengan mengedepankan semangat gotong royong.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-emerald-300">d.</span>
+                        <span>Mewujudkan masyarakat yang berkepribadian dalam kebudayaan.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ============================================
+          LAYANAN INFORMASI
+          ============================================ */}
+      <section id="layanan-informasi" className="bg-gray-50/50 py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ScrollReveal variant="fade-up">
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Layanan Informasi
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Akses cepat ke berbagai informasi penting di desa kami.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {/* Profil Desa Card */}
+            <ScrollReveal variant="fade-up" delay={100}>
+              <Link href="/profil" className="group flex h-full flex-col rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div className="mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+                  </svg>
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-gray-900">Profil Desa</h3>
+                <p className="mb-8 flex-1 text-gray-600">
+                  Transparansi data kependudukan, mencakup jumlah warga, sebaran jenis kelamin, dan statistik keluarga secara *real-time*.
+                </p>
+                <div className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors group-hover:text-blue-700">
+                  Lihat Statistik
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                    <path fillRule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </Link>
             </ScrollReveal>
 
-            {/* Misi */}
-            <ScrollReveal variant="fade-right" delay={200}>
-            <div className="rounded-3xl bg-emerald-600 p-8 text-white shadow-md ring-1 ring-emerald-500 transition-all hover:shadow-lg">
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                </svg>
-              </div>
-              <h3 className="mb-6 text-2xl font-bold">Misi</h3>
-              <ul className="space-y-4 text-emerald-50">
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">1</span>
-                  <span>Meningkatkan kualitas pelayanan publik pemerintahan desa yang transparan dan akuntabel.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">2</span>
-                  <span>Mendorong pertumbuhan ekonomi kerakyatan berbasis potensi lokal pertanian.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">3</span>
-                  <span>Meningkatkan pembangunan infrastruktur desa yang merata dan tepat sasaran.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">4</span>
-                  <span>Membina kehidupan masyarakat yang harmonis, agamis, dan melestarikan gotong royong.</span>
-                </li>
-              </ul>
-            </div>
+            {/* Peta Desa Card */}
+            <ScrollReveal variant="fade-up" delay={200}>
+              <Link href="/peta" className="group flex h-full flex-col rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                <div className="mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 transition-colors group-hover:bg-amber-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+                  </svg>
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-gray-900">Peta Desa</h3>
+                <p className="mb-8 flex-1 text-gray-600">
+                  Visualisasi batas wilayah, letak fasilitas umum, dan jalan desa untuk mempermudah pencarian lokasi.
+                </p>
+                <div className="inline-flex items-center gap-2 text-sm font-semibold text-amber-600 transition-colors group-hover:text-amber-700">
+                  Buka Peta
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                    <path fillRule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            {/* UMKM Card */}
+            <ScrollReveal variant="fade-up" delay={300}>
+              <Link href="/umkm" className="group flex h-full flex-col rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-emerald-100 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <div className="mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                  </svg>
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-gray-900">UMKM</h3>
+                <p className="mb-8 flex-1 text-gray-600">
+                  Mendukung pengusaha lokal dengan menampilkan produk, jasa, dan kontak langsung warga Desa Gadungan.
+                </p>
+                <div className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 transition-colors group-hover:text-emerald-700">
+                  Cari UMKM
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                    <path fillRule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </Link>
             </ScrollReveal>
           </div>
         </div>
@@ -234,7 +408,29 @@ export default async function HomePage() {
         </div>
 
         {/* Carousel Component */}
-        <FacilitiesCarousel />
+        <FacilitiesCarousel limit={4} />
+
+        {/* View All Link */}
+        <div className="mt-10 text-center">
+          <Link
+            href="/sarana-prasarana"
+            className="inline-flex items-center gap-2 rounded-xl bg-emerald-50 px-6 py-3 text-sm font-semibold text-emerald-700 transition-all duration-300 hover:bg-emerald-100"
+          >
+            Lihat Semua Fasilitas
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="h-4 w-4"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
+        </div>
       </section>
 
       {/* ============================================

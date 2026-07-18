@@ -9,6 +9,7 @@ import { useState } from "react";
 const navLinks = [
   { href: "/", label: "Beranda" },
   { href: "/profil", label: "Profil Desa" },
+  { href: "/sarana-prasarana", label: "Fasilitas" },
   { href: "/peta", label: "Peta" },
   { href: "/umkm", label: "UMKM" },
   { href: "/berita", label: "Berita" },

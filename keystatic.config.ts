@@ -49,5 +49,45 @@ export default config({
         }),
       },
     }),
+
+    // =============================================
+    // Fasilitas (Sarana & Prasarana) Collection
+    // =============================================
+    fasilitas: collection({
+      label: "Fasilitas (Sarana & Prasarana)",
+      slugField: "name",
+      path: "src/content/fasilitas/*",
+      format: { data: "json" },
+      schema: {
+        name: fields.slug({
+          name: {
+            label: "Nama Fasilitas",
+            validation: { isRequired: true },
+          },
+        }),
+        foto: fields.image({
+          label: "Foto Utama",
+          directory: "public/images/fasilitas",
+          publicPath: "/images/fasilitas/",
+          validation: { isRequired: true },
+        }),
+        deskripsi: fields.text({
+          label: "Deskripsi Singkat",
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        galeri: fields.array(
+          fields.image({
+            label: "Foto",
+            directory: "public/images/fasilitas",
+            publicPath: "/images/fasilitas/",
+          }),
+          {
+            label: "Galeri Foto (Opsional)",
+            itemLabel: (props) => props.value || "Foto",
+          }
+        ),
+      },
+    }),
   },
 });
