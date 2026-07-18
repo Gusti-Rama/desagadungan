@@ -85,7 +85,7 @@ export default function ProfilDesaPage() {
                   </svg>
                 </div>
                 {/* TODO: Ganti dengan data asli */}
-                <p className="mt-4 text-3xl font-bold text-gray-900">12 / 5</p>
+                <p className="mt-4 text-3xl font-bold text-gray-900">13 / 5</p>
                 <p className="mt-1 text-sm text-gray-500">Jumlah RT / RW</p>
               </div>
             </ScrollReveal>
