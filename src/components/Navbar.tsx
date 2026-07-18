@@ -9,6 +9,7 @@ import { useState } from "react";
 const navLinks = [
   { href: "/", label: "Beranda" },
   { href: "/profil", label: "Profil Desa" },
+  { href: "/umkm", label: "UMKM" },
   { href: "/berita", label: "Berita" },
 ];
 
@@ -60,8 +61,8 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${isActive(link.href)
-                  ? "bg-emerald-50 text-emerald-700"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                ? "bg-emerald-50 text-emerald-700"
+                : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 }`}
             >
               {link.label}
@@ -125,8 +126,8 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
               className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 ${isActive(link.href)
-                  ? "bg-emerald-50 text-emerald-700"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                ? "bg-emerald-50 text-emerald-700"
+                : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 }`}
             >
               {link.label}
