@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Demographics from "@/components/Demographics";
 import ScrollReveal from "@/components/ScrollReveal";
+import ZoomableImage from "@/components/ZoomableImage";
 
 export const metadata: Metadata = {
   title: "Profil Desa",
@@ -310,11 +311,9 @@ export default function ProfilDesaPage() {
           {/* Image Container */}
           <ScrollReveal variant="zoom" delay={100}>
             <div className="mx-auto max-w-5xl overflow-hidden rounded-3xl bg-gray-50 p-4 shadow-sm ring-1 ring-gray-200/60 sm:p-8 transition-all hover:shadow-md">
-              <img
+              <ZoomableImage
                 src="/images/BaganStrukturOrganisasiPemerintahDesaGadungan.png"
                 alt="Bagan Struktur Organisasi Pemerintah Desa Gadungan"
-                className="h-auto w-full rounded-xl object-contain shadow-sm"
-                loading="lazy"
               />
             </div>
           </ScrollReveal>
