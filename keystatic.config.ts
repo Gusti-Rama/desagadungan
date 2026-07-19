@@ -105,54 +105,13 @@ export default config({
             validation: { isRequired: true },
           },
         }),
-        category: fields.select({
-          label: "Kategori",
-          options: [
-            { label: "Kuliner", value: "Kuliner" },
-            { label: "Kerajinan", value: "Kerajinan" },
-            { label: "Perdagangan", value: "Perdagangan" },
-            { label: "Jasa", value: "Jasa" },
-            { label: "Peternakan", value: "Peternakan" },
-            { label: "Pertanian", value: "Pertanian" },
-            { label: "Lainnya", value: "Lainnya" },
-          ],
-          defaultValue: "Kuliner",
-        }),
-        status: fields.select({
-          label: "Status Buka",
-          options: [
-            { label: "Aktif Buka", value: "Aktif Buka" },
-            { label: "Tutup Sementara", value: "Tutup Sementara" },
-          ],
-          defaultValue: "Aktif Buka",
-        }),
-        owner: fields.text({
-          label: "Nama Pemilik",
-          validation: { isRequired: true },
-        }),
-        location: fields.text({
-          label: "Alamat / Lokasi",
-          validation: { isRequired: true },
-        }),
-        whatsapp: fields.text({
-          label: "Nomor WhatsApp (Contoh: 6281234567890)",
-          validation: { isRequired: true },
-        }),
-        mapsUrl: fields.url({
-          label: "Link Google Maps",
-        }),
         image: fields.image({
           label: "Foto Usaha (Opsional)",
           directory: "public/images/umkm",
           publicPath: "/images/umkm/",
         }),
-        shortDesc: fields.text({
-          label: "Deskripsi Singkat (Maks 150 Karakter)",
-          validation: { isRequired: true },
-        }),
-        fullDesc: fields.text({
-          label: "Deskripsi Lengkap",
-          multiline: true,
+        whatsapp: fields.text({
+          label: "Nomor WhatsApp (Contoh: 6281234567890)",
           validation: { isRequired: true },
         }),
       },

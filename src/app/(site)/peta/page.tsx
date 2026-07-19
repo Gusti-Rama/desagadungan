@@ -5,8 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 const tabs = [
   { id: "desa", label: "Peta Desa Gadungan" },
-  { id: "administrasi", label: "Peta Administrasi" },
-  { id: "umkm", label: "Peta UMKM" },
+  { id: "administrasiumkm", label: "Peta Administrasi dan UMKM" },
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
@@ -52,11 +51,10 @@ export default function PetaPage() {
                   key={tab.id}
                   id={`tab-${tab.id}`}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
-                    isActive
+                  className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${isActive
                       ? "bg-white text-emerald-800 shadow-lg shadow-emerald-900/30"
                       : "bg-white/10 text-white ring-1 ring-white/20 backdrop-blur-sm hover:bg-white/20 hover:ring-white/30"
-                  }`}
+                    }`}
                 >
                   {tab.label}
                 </button>
@@ -104,9 +102,9 @@ export default function PetaPage() {
             </ScrollReveal>
           )}
 
-          {/* Peta Administrasi — PDF Embed */}
-          {activeTab === "administrasi" && (
-            <ScrollReveal variant="fade" key="administrasi">
+          {/* Peta Administrasi & UMKM — PDF Embed */}
+          {activeTab === "administrasiumkm" && (
+            <ScrollReveal variant="fade" key="administrasiumkm">
               <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/60">
                 <div className="border-b border-gray-100 bg-white px-6 py-4">
                   <div className="flex items-center gap-3">
@@ -116,82 +114,14 @@ export default function PetaPage() {
                       </svg>
                     </div>
                     <div>
-                      <h2 className="text-lg font-bold text-gray-900">Peta Administrasi</h2>
-                      <p className="text-sm text-gray-500">Batas wilayah administrasi Desa Gadungan</p>
+                      <h2 className="text-lg font-bold text-gray-900">Peta Administrasi dan UMKM</h2>
+                      <p className="text-sm text-gray-500">Batas wilayah administrasi dan sebaran lokasi UMKM Desa Gadungan</p>
                     </div>
                   </div>
                 </div>
                 {/* PDF Container */}
-                <div className="relative flex h-[650px] w-full flex-col items-center justify-center bg-gray-50 p-6 text-center">
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 text-amber-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="h-8 w-8">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-700">
-                        Area ini akan menampilkan dokumen PDF Peta Administrasi secara langsung.
-                      </p>
-                      <p className="mt-1 text-xs text-gray-400">
-                        Taruh file PDF di folder <code className="rounded bg-gray-100 px-1.5 py-0.5 text-emerald-600">public/</code> lalu aktifkan iframe di bawah.
-                      </p>
-                    </div>
-                    {/* 
-                      TODO: Ganti div ini dengan iframe di bawah saat PDF sudah siap dan ditaruh di folder public/ 
-                      <iframe src="/peta-administrasi.pdf" className="absolute inset-0 w-full h-full" />
-                    */}
-                    <code className="rounded-lg bg-emerald-50 px-3 py-1.5 text-xs text-emerald-600">
-                      &lt;iframe src=&quot;/peta-administrasi.pdf&quot; /&gt;
-                    </code>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          )}
-
-          {/* Peta UMKM — PDF Embed */}
-          {activeTab === "umkm" && (
-            <ScrollReveal variant="fade" key="umkm">
-              <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/60">
-                <div className="border-b border-gray-100 bg-white px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                        <path d="M5.223 2.25h-.001A2.972 2.972 0 0 0 2.25 5.222v.001c0 1.3.844 2.461 2.088 2.847l.07.02a3.29 3.29 0 0 0 1.093.176c.456 0 .894-.093 1.29-.264a3.005 3.005 0 0 0 1.79-2.04l.009-.031a2.972 2.972 0 0 0-3.367-3.681ZM11.998 2.25a2.972 2.972 0 0 0-2.972 2.972v.001a2.972 2.972 0 0 0 2.088 2.847l.07.02a3.29 3.29 0 0 0 1.093.176c.456 0 .894-.093 1.29-.264a3.005 3.005 0 0 0 1.79-2.04l.009-.031a2.972 2.972 0 0 0-3.368-3.681ZM18.775 2.25a2.972 2.972 0 0 0-2.972 2.972v.001a2.972 2.972 0 0 0 2.088 2.847l.07.02a3.29 3.29 0 0 0 1.093.176c.456 0 .894-.093 1.29-.264a3.005 3.005 0 0 0 1.79-2.04l.009-.031a2.972 2.972 0 0 0-3.368-3.681Z" />
-                        <path fillRule="evenodd" d="M2.25 13.5a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3v-6Zm6.697 1.085a.75.75 0 0 1 .218 1.038l-1.828 2.87 1.297.97a.75.75 0 1 1-.9 1.2l-1.5-1.125a.75.75 0 0 1-.119-1.12l2.25-3.535a.75.75 0 0 1 1.038-.218l-.456-.08Zm4.856.218a.75.75 0 1 0-1.256-.82l-2.25 3.535a.75.75 0 0 0 .119 1.12l1.5 1.125a.75.75 0 1 0 .9-1.2l-1.297-.97 1.828-2.87.456.08Z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h2 className="text-lg font-bold text-gray-900">Peta Potensi UMKM</h2>
-                      <p className="text-sm text-gray-500">Sebaran lokasi UMKM di Desa Gadungan</p>
-                    </div>
-                  </div>
-                </div>
-                {/* PDF Container */}
-                <div className="relative flex h-[650px] w-full flex-col items-center justify-center bg-gray-50 p-6 text-center">
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="h-8 w-8">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-700">
-                        Area ini akan menampilkan dokumen PDF Peta UMKM secara langsung.
-                      </p>
-                      <p className="mt-1 text-xs text-gray-400">
-                        Taruh file PDF di folder <code className="rounded bg-gray-100 px-1.5 py-0.5 text-emerald-600">public/</code> lalu aktifkan iframe di bawah.
-                      </p>
-                    </div>
-                    {/* 
-                      TODO: Ganti div ini dengan iframe di bawah saat PDF sudah siap dan ditaruh di folder public/ 
-                      <iframe src="/peta-umkm.pdf" className="absolute inset-0 w-full h-full" />
-                    */}
-                    <code className="rounded-lg bg-emerald-50 px-3 py-1.5 text-xs text-emerald-600">
-                      &lt;iframe src=&quot;/peta-umkm.pdf&quot; /&gt;
-                    </code>
-                  </div>
+                <div className="relative flex h-[650px] w-full flex-col items-center justify-center bg-gray-50 p-0 text-center">
+                  <iframe src="/peta/PETA_ADMINISTRASI_DAN_UMKM_GADUNGAN.pdf" className="absolute inset-0 w-full h-full border-0" title="Peta Administrasi dan UMKM Desa Gadungan" />
                 </div>
               </div>
             </ScrollReveal>
