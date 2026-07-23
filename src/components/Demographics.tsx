@@ -3,63 +3,27 @@
 import React, { useEffect, useRef, useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 
-// Data based on official Desa Gadungan records
-const summary = [
-  { label: "TOTAL JIWA", value: "1459" },
-  { label: "KEPALA KELUARGA", value: "562" },
-  { label: "LAKI-LAKI", value: "705" },
-  { label: "PEREMPUAN", value: "754" },
-];
+export interface StatItem {
+  label: string;
+  value: number;
+  percent?: number;
+}
 
-const umur = [
-  { label: "Balita (0-4 Th)", value: 60, percent: 4 },
-  { label: "Anak & Remaja (5-17 Th)", value: 246, percent: 17 },
-  { label: "Dewasa (18-59 Th)", value: 861, percent: 59 },
-  { label: "Lansia (60+ Th)", value: 292, percent: 20 },
-];
-
-const perkawinan = [
-  { label: "Kawin", value: 695, percent: 48 },
-  { label: "Belum Kawin", value: 610, percent: 42 },
-  { label: "Cerai Mati", value: 112, percent: 8 },
-  { label: "Cerai Hidup", value: 42, percent: 3 },
-];
-
-const agama = [
-  { label: "Islam", value: 1245, percent: 85 },
-  { label: "Katolik", value: 198, percent: 14 },
-  { label: "Kristen", value: 16, percent: 1 },
-];
-
-const pendidikan = [
-  { label: "Tidak/Belum Sekolah", value: 154, percent: 11 },
-  { label: "Belum Tamat SD/Sederajat", value: 145, percent: 10 },
-  { label: "Tamat SD/Sederajat", value: 198, percent: 14 },
-  { label: "SLTP/Sederajat", value: 198, percent: 14 },
-  { label: "SLTA/Sederajat", value: 546, percent: 37 },
-  { label: "Akademi/Diploma I/II/III", value: 56, percent: 4 },
-  { label: "Diploma IV/Strata I/II/III", value: 162, percent: 11 },
-];
-
-const pekerjaan = [
-  { label: "Buruh Harian Lepas", value: 384, percent: 26 },
-  { label: "Pelajar/Mahasiswa", value: 316, percent: 22 },
-  { label: "Belum/Tidak Bekerja", value: 189, percent: 13 },
-  { label: "Mengurus Rumah Tangga", value: 151, percent: 10 },
-  { label: "Karyawan Swasta", value: 149, percent: 10 },
-  { label: "Wiraswasta", value: 121, percent: 8 },
-  { label: "Pedagang", value: 53, percent: 4 },
-  { label: "PNS / Aparatur / Guru", value: 49, percent: 3 },
-  { label: "Lain-lain", value: 47, percent: 4 },
-];
-
-const darah = [
-  { label: "Tidak Diketahui", value: 841, percent: 58 },
-  { label: "A", value: 254, percent: 17 },
-  { label: "O", value: 181, percent: 12 },
-  { label: "B", value: 122, percent: 8 },
-  { label: "AB", value: 58, percent: 4 },
-];
+export interface DemographicsData {
+  jumlahPenduduk: number;
+  kepalaKeluarga: number;
+  lakiLaki: number;
+  perempuan: number;
+  jumlahRt: number;
+  jumlahRw: number;
+  luasWilayah: string;
+  umur: StatItem[];
+  perkawinan: StatItem[];
+  agama: StatItem[];
+  pendidikan: StatItem[];
+  pekerjaan: StatItem[];
+  darah: StatItem[];
+}
 
 const ProgressBarItem = ({
   label,
@@ -104,7 +68,7 @@ const Card = ({
 }: {
   title: string;
   icon: React.ReactNode;
-  data: { label: string; value: number | string; percent?: number }[];
+  data: StatItem[];
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -195,7 +159,27 @@ function AnimatedNumber({ value }: { value: string }) {
   return <span ref={ref}>{display}</span>;
 }
 
-export default function Demographics() {
+export default function Demographics({ data }: { data: DemographicsData }) {
+  const summary = [
+    { label: "TOTAL JIWA", value: String(data.jumlahPenduduk) },
+    { label: "KEPALA KELUARGA", value: String(data.kepalaKeluarga) },
+    { label: "LAKI-LAKI", value: String(data.lakiLaki) },
+    { label: "PEREMPUAN", value: String(data.perempuan) },
+  ];
+
+  const addPercentages = (arr: StatItem[]) => {
+    const total = arr.reduce((acc, item) => acc + item.value, 0);
+    if (total === 0) return arr.map(a => ({ ...a, percent: 0 }));
+    return arr.map(a => ({ ...a, percent: Math.round((a.value / total) * 100) }));
+  };
+
+  const umur = addPercentages(data.umur || []);
+  const perkawinan = addPercentages(data.perkawinan || []);
+  const agama = addPercentages(data.agama || []);
+  const pendidikan = addPercentages(data.pendidikan || []);
+  const pekerjaan = addPercentages(data.pekerjaan || []);
+  const darah = addPercentages(data.darah || []);
+
   return (
     <section id="data-demografi" className="bg-gray-50 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { reader } from "@/lib/reader";
 import Demographics from "@/components/Demographics";
 import ScrollReveal from "@/components/ScrollReveal";
 import ZoomableImage from "@/components/ZoomableImage";
@@ -10,12 +11,29 @@ export const metadata: Metadata = {
 };
 
 /**
- * Profil Desa Page — Village profile with hardcoded statistics,
- * and embedded Google Maps.
- *
- * All data here is placeholder — edit the values directly in this file or Demographics component.
+ * Profil Desa Page
  */
-export default function ProfilDesaPage() {
+export default async function ProfilDesaPage() {
+  const statistikData = await reader.singletons.statistik.read();
+  // Fallback to default values if Keystatic is empty
+  const defaultData = {
+    jumlahPenduduk: 0,
+    kepalaKeluarga: 0,
+    lakiLaki: 0,
+    perempuan: 0,
+    jumlahRt: 0,
+    jumlahRw: 0,
+    luasWilayah: "-",
+    umur: [],
+    perkawinan: [],
+    agama: [],
+    pendidikan: [],
+    pekerjaan: [],
+    darah: [],
+  };
+
+  const data = statistikData || defaultData;
+
   return (
     <>
       {/* ============================================
@@ -71,7 +89,7 @@ export default function ProfilDesaPage() {
                   </svg>
                 </div>
                 {/* TODO: Ganti dengan data asli */}
-                <p className="mt-4 text-3xl font-bold text-gray-900">1.459</p>
+                <p className="mt-4 text-3xl font-bold text-gray-900">{data.jumlahPenduduk.toLocaleString("id-ID")}</p>
                 <p className="mt-1 text-sm text-gray-500">Jumlah Penduduk</p>
               </div>
             </ScrollReveal>
@@ -86,7 +104,7 @@ export default function ProfilDesaPage() {
                   </svg>
                 </div>
                 {/* TODO: Ganti dengan data asli */}
-                <p className="mt-4 text-3xl font-bold text-gray-900">13 / 5</p>
+                <p className="mt-4 text-3xl font-bold text-gray-900">{data.jumlahRt} / {data.jumlahRw}</p>
                 <p className="mt-1 text-sm text-gray-500">Jumlah RT / RW</p>
               </div>
             </ScrollReveal>
@@ -100,7 +118,7 @@ export default function ProfilDesaPage() {
                   </svg>
                 </div>
                 {/* TODO: Ganti dengan data asli */}
-                <p className="mt-4 text-3xl font-bold text-gray-900">~200 Ha</p>
+                <p className="mt-4 text-3xl font-bold text-gray-900">{data.luasWilayah}</p>
                 <p className="mt-1 text-sm text-gray-500">Luas Wilayah</p>
               </div>
             </ScrollReveal>
@@ -115,7 +133,7 @@ export default function ProfilDesaPage() {
                   </svg>
                 </div>
                 {/* TODO: Ganti dengan data asli */}
-                <p className="mt-4 text-xl font-bold text-gray-900">Pedagang</p>
+                <p className="mt-4 text-xl font-bold text-gray-900">{data.pekerjaan && data.pekerjaan.length > 0 ? [...data.pekerjaan].sort((a, b) => b.value - a.value)[0].label : "-"}</p>
                 <p className="mt-1 text-sm text-gray-500">Mata Pencaharian Utama</p>
               </div>
             </ScrollReveal>
@@ -126,7 +144,7 @@ export default function ProfilDesaPage() {
       {/* ============================================
           STATISTIK DEMOGRAFI WARGA
           ============================================ */}
-      <Demographics />
+      <Demographics data={data as any} />
 
       {/* ============================================
           VISI & MISI
