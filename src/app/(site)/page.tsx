@@ -49,6 +49,34 @@ export default async function HomePage() {
     // Content directory may not exist yet — show empty state
   }
 
+  let formattedFacilities: Array<{
+    slug: string;
+    name: string;
+    deskripsi: string;
+    foto: string | null;
+  }> = [];
+
+  try {
+    const fasilitasSlugs = await reader.collections.fasilitas.list();
+    const fasilitasData = await Promise.all(
+      fasilitasSlugs.map(async (slug) => {
+        const entry = await reader.collections.fasilitas.read(slug);
+        return entry ? { slug, ...entry } : null;
+      })
+    );
+
+    formattedFacilities = fasilitasData
+      .filter((f): f is NonNullable<typeof f> => f !== null)
+      .map((fac) => ({
+        slug: fac.slug,
+        name: fac.name,
+        deskripsi: fac.deskripsi,
+        foto: fac.foto,
+      }));
+  } catch {
+    // Content directory may not exist yet
+  }
+
   return (
     <>
       {/* ============================================
@@ -408,7 +436,7 @@ export default async function HomePage() {
         </div>
 
         {/* Carousel Component */}
-        <FacilitiesCarousel limit={4} />
+        <FacilitiesCarousel facilities={formattedFacilities} limit={4} />
 
         {/* View All Link */}
         <div className="mt-10 text-center">

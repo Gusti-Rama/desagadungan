@@ -1,13 +1,21 @@
 "use client";
 
 import { useRef } from "react";
-import { facilities } from "../data/facilities";
+import ZoomableImage from "@/components/ZoomableImage";
+
+export interface Facility {
+  slug: string;
+  name: string;
+  deskripsi: string;
+  foto: string | null;
+}
 
 interface FacilitiesCarouselProps {
+  facilities: Facility[];
   limit?: number;
 }
 
-export default function FacilitiesCarousel({ limit }: FacilitiesCarouselProps) {
+export default function FacilitiesCarousel({ facilities, limit }: FacilitiesCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -21,6 +29,28 @@ export default function FacilitiesCarousel({ limit }: FacilitiesCarouselProps) {
   };
 
   const displayFacilities = limit ? facilities.slice(0, limit) : facilities;
+
+  if (displayFacilities.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-2xl bg-gray-50 py-16 text-center shadow-inner">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1}
+          stroke="currentColor"
+          className="mb-4 h-12 w-12 text-gray-300"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+          />
+        </svg>
+        <p className="text-gray-500">Data sarana & prasarana belum tersedia.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="relative">
@@ -53,48 +83,45 @@ export default function FacilitiesCarousel({ limit }: FacilitiesCarouselProps) {
       >
         {displayFacilities.map((fac) => (
           <div
-            key={fac.id}
+            key={fac.slug}
             className="group relative flex w-[280px] shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:shadow-md sm:w-[320px]"
           >
-            {/* Image Placeholder */}
+            {/* Image */}
             <div className="relative flex aspect-[4/3] w-full flex-col items-center justify-center bg-gray-50 overflow-hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1}
-                stroke="currentColor"
-                className="mb-2 h-10 w-10 text-gray-300 transition-transform duration-300 group-hover:scale-110"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+              {fac.foto ? (
+                <ZoomableImage
+                  src={fac.foto}
+                  alt={fac.name}
+                  wrapperClassName="group relative cursor-pointer overflow-hidden h-full w-full"
+                  imageClassName="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-              </svg>
-              <span className="text-sm font-medium text-gray-400">
-                Foto {fac.title}
-              </span>
+              ) : (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1}
+                    stroke="currentColor"
+                    className="mb-2 h-10 w-10 text-gray-300"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                    />
+                  </svg>
+                  <span className="text-sm font-medium text-gray-400">
+                    Tanpa Foto
+                  </span>
+                </>
+              )}
             </div>
 
             {/* Content Area */}
-            <div className="relative flex flex-1 flex-col p-6 pt-8">
-              {/* Floating Icon */}
-              <div className="absolute -top-6 right-6 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 shadow-sm transition-colors group-hover:bg-emerald-600 group-hover:text-white">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-6 w-6"
-                >
-                  {fac.icon}
-                </svg>
-              </div>
-
-              <h3 className="text-lg font-bold text-gray-900">{fac.title}</h3>
-              <p className="mt-2 text-sm text-gray-600">{fac.description}</p>
+            <div className="relative flex flex-1 flex-col p-6 pt-6">
+              <h3 className="text-lg font-bold text-gray-900 group-hover:text-emerald-700 transition-colors">{fac.name}</h3>
+              <p className="mt-2 text-sm text-gray-600 line-clamp-3">{fac.deskripsi}</p>
             </div>
           </div>
         ))}
