@@ -5,7 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 export interface StatItem {
   label: string;
-  value: number;
+  value: number | null;
   percent?: number;
 }
 
@@ -105,7 +105,7 @@ const Card = ({
           <ProgressBarItem
             key={idx}
             label={item.label}
-            value={item.value as number}
+            value={(item.value ?? 0) as number}
             percent={item.percent as number}
             isVisible={isVisible}
             delay={idx * 100}
@@ -161,16 +161,16 @@ function AnimatedNumber({ value }: { value: string }) {
 
 export default function Demographics({ data }: { data: DemographicsData }) {
   const summary = [
-    { label: "TOTAL JIWA", value: String(data.jumlahPenduduk) },
-    { label: "KEPALA KELUARGA", value: String(data.kepalaKeluarga) },
-    { label: "LAKI-LAKI", value: String(data.lakiLaki) },
-    { label: "PEREMPUAN", value: String(data.perempuan) },
+    { label: "TOTAL JIWA", value: String(data.jumlahPenduduk ?? 0) },
+    { label: "KEPALA KELUARGA", value: String(data.kepalaKeluarga ?? 0) },
+    { label: "LAKI-LAKI", value: String(data.lakiLaki ?? 0) },
+    { label: "PEREMPUAN", value: String(data.perempuan ?? 0) },
   ];
 
   const addPercentages = (arr: StatItem[]) => {
-    const total = arr.reduce((acc, item) => acc + item.value, 0);
-    if (total === 0) return arr.map(a => ({ ...a, percent: 0 }));
-    return arr.map(a => ({ ...a, percent: Math.round((a.value / total) * 100) }));
+    const total = arr.reduce((acc, item) => acc + (item.value ?? 0), 0);
+    if (total === 0) return arr.map(a => ({ ...a, percent: 0, value: a.value ?? 0 }));
+    return arr.map(a => ({ ...a, percent: Math.round(((a.value ?? 0) / total) * 100), value: a.value ?? 0 }));
   };
 
   const umur = addPercentages(data.umur || []);

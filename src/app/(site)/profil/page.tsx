@@ -89,7 +89,7 @@ export default async function ProfilDesaPage() {
                   </svg>
                 </div>
                 {/* TODO: Ganti dengan data asli */}
-                <p className="mt-4 text-3xl font-bold text-gray-900">{data.jumlahPenduduk.toLocaleString("id-ID")}</p>
+                <p className="mt-4 text-3xl font-bold text-gray-900">{(data.jumlahPenduduk ?? 0).toLocaleString("id-ID")}</p>
                 <p className="mt-1 text-sm text-gray-500">Jumlah Penduduk</p>
               </div>
             </ScrollReveal>
@@ -104,7 +104,7 @@ export default async function ProfilDesaPage() {
                   </svg>
                 </div>
                 {/* TODO: Ganti dengan data asli */}
-                <p className="mt-4 text-3xl font-bold text-gray-900">{data.jumlahRt} / {data.jumlahRw}</p>
+                <p className="mt-4 text-3xl font-bold text-gray-900">{data.jumlahRt ?? 0} / {data.jumlahRw ?? 0}</p>
                 <p className="mt-1 text-sm text-gray-500">Jumlah RT / RW</p>
               </div>
             </ScrollReveal>
@@ -118,7 +118,7 @@ export default async function ProfilDesaPage() {
                   </svg>
                 </div>
                 {/* TODO: Ganti dengan data asli */}
-                <p className="mt-4 text-3xl font-bold text-gray-900">{data.luasWilayah}</p>
+                <p className="mt-4 text-3xl font-bold text-gray-900">{data.luasWilayah ?? "-"}</p>
                 <p className="mt-1 text-sm text-gray-500">Luas Wilayah</p>
               </div>
             </ScrollReveal>
@@ -133,7 +133,7 @@ export default async function ProfilDesaPage() {
                   </svg>
                 </div>
                 {/* TODO: Ganti dengan data asli */}
-                <p className="mt-4 text-xl font-bold text-gray-900">{data.pekerjaan && data.pekerjaan.length > 0 ? [...data.pekerjaan].sort((a, b) => b.value - a.value)[0].label : "-"}</p>
+                <p className="mt-4 text-xl font-bold text-gray-900">{data.pekerjaan && data.pekerjaan.length > 0 ? [...data.pekerjaan].sort((a, b) => (b.value ?? 0) - (a.value ?? 0))[0].label : "-"}</p>
                 <p className="mt-1 text-sm text-gray-500">Mata Pencaharian Utama</p>
               </div>
             </ScrollReveal>
