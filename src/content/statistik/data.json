@@ -1,0 +1,149 @@
+{
+  "jumlahPenduduk": 1459,
+  "kepalaKeluarga": 562,
+  "lakiLaki": 705,
+  "perempuan": 754,
+  "jumlahRt": 12,
+  "jumlahRw": 5,
+  "luasWilayah": "~200 Ha",
+  "umur": [
+    {
+      "label": "Balita (0-4 Tahun)",
+      "value": 60
+    },
+    {
+      "label": "Anak & Remaja (5-17 Tahun)",
+      "value": 246
+    },
+    {
+      "label": "Dewasa (18 - 59 Tahun)",
+      "value": 861
+    },
+    {
+      "label": "Lansia (60+ Tahun)",
+      "value": 292
+    }
+  ],
+  "perkawinan": [
+    {
+      "label": "Kawin",
+      "value": 695
+    },
+    {
+      "label": "Belum Kawin",
+      "value": 610
+    },
+    {
+      "label": "Cerai Mati",
+      "value": 112
+    },
+    {
+      "label": "Cerai Hidup",
+      "value": 42
+    }
+  ],
+  "agama": [
+    {
+      "label": "Islam",
+      "value": 1245
+    },
+    {
+      "label": "Katolik",
+      "value": 198
+    },
+    {
+      "label": "Kristen",
+      "value": 16
+    }
+  ],
+  "pendidikan": [
+    {
+      "label": "Tidak/Belum Sekolah",
+      "value": 154
+    },
+    {
+      "label": "Belum Tamat SD/Sederajat",
+      "value": 145
+    },
+    {
+      "label": "Tamat SD/Sederajat",
+      "value": 198
+    },
+    {
+      "label": "SLTP/Sederajat",
+      "value": 198
+    },
+    {
+      "label": "SLTA/Sederajat",
+      "value": 546
+    },
+    {
+      "label": "Akademi/Diploma I/II/III",
+      "value": 56
+    },
+    {
+      "label": "Diploma IV/Strata I/II/III",
+      "value": 162
+    }
+  ],
+  "pekerjaan": [
+    {
+      "label": "Buruh Harian Lepas",
+      "value": 384
+    },
+    {
+      "label": "Pelajar/Mahasiswa",
+      "value": 316
+    },
+    {
+      "label": "Belum/Tidak Bekerja",
+      "value": 189
+    },
+    {
+      "label": "Mengurus Rumah Tangga",
+      "value": 151
+    },
+    {
+      "label": "Karyawan Swasta",
+      "value": 149
+    },
+    {
+      "label": "Wiraswasta",
+      "value": 121
+    },
+    {
+      "label": "Pedagang",
+      "value": 53
+    },
+    {
+      "label": "PNS / Aparatur / Guru",
+      "value": 49
+    },
+    {
+      "label": "Lain-lain",
+      "value": 47
+    }
+  ],
+  "darah": [
+    {
+      "label": "Tidak Diketahui",
+      "value": 841
+    },
+    {
+      "label": "A",
+      "value": 254
+    },
+    {
+      "label": "O",
+      "value": 181
+    },
+    {
+      "label": "B",
+      "value": 122
+    },
+    {
+      "label": "AB",
+      "value": 58
+    }
+  ]
+}
