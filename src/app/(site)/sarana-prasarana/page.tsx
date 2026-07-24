@@ -23,7 +23,7 @@ export default async function SaranaPrasaranaPage() {
       name: fac.name,
       deskripsi: fac.deskripsi,
       foto: fac.foto,
-      galeri: fac.galeri || [],
+      galeri: (fac.galeri || []).filter((g): g is string => g !== null),
     }));
 
   return (
