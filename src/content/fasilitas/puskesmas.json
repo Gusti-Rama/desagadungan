@@ -2,5 +2,7 @@
   "name": "Puskesmas",
   "foto": "/images/fasilitas/puskesmas/foto.jpg",
   "deskripsi": "Puskesmas merupakan fasilitas pelayanan kesehatan dasar terpadu yang dirancang untuk mendukung kesehatan dan kesejahteraan masyarakat. Puskesmas ini siap memfasilitasi berbagai layanan medis utama, mulai dari pemeriksaan umum, kesehatan ibu dan anak, pencegahan penyakit, hingga berbagai program edukasi kesehatan masyarakat lainnya secara mudah dijangkau, profesional, dan inklusif.",
-  "galeri": []
+  "galeri": [
+    "/images/fasilitas/puskesmas/galeri/0.jpg"
+  ]
 }
