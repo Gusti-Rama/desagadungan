@@ -6,6 +6,8 @@ import ScrollReveal from "@/components/ScrollReveal";
 const tabs = [
   { id: "desa", label: "Peta Desa Gadungan" },
   { id: "administrasiumkm", label: "Peta Administrasi dan UMKM" },
+  { id: "arahaliranairtanah", label: "Peta Arah Aliran Air Tanah" },
+  { id: "administrasidusunbeku", label: "Peta Administrasi Dusun Beku" },
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
@@ -122,6 +124,56 @@ export default function PetaPage() {
                 {/* PDF Container */}
                 <div className="relative flex h-[650px] w-full flex-col items-center justify-center bg-gray-50 p-0 text-center">
                   <iframe src="/peta/PETA_ADMINISTRASI_DAN_UMKM_GADUNGAN.pdf" className="absolute inset-0 w-full h-full border-0" title="Peta Administrasi dan UMKM Desa Gadungan" />
+                </div>
+              </div>
+            </ScrollReveal>
+          )}
+
+          {/* Peta Arah Aliran Air Tanah — PDF Embed */}
+          {activeTab === "arahaliranairtanah" && (
+            <ScrollReveal variant="fade" key="arahaliranairtanah">
+              <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/60">
+                <div className="border-b border-gray-100 bg-white px-6 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+                        <path fillRule="evenodd" d="M8.161 2.58a1.875 1.875 0 0 1 1.678 0l4.993 2.498c.106.052.23.052.336 0l3.869-1.935A1.875 1.875 0 0 1 21.75 4.82v12.485c0 .71-.401 1.36-1.037 1.677l-4.875 2.437a1.875 1.875 0 0 1-1.676 0l-4.994-2.497a.375.375 0 0 0-.336 0l-3.868 1.935A1.875 1.875 0 0 1 2.25 19.18V6.695c0-.71.401-1.36 1.036-1.677l4.875-2.437ZM9 6a.75.75 0 0 1 .75.75V15a.75.75 0 0 1-1.5 0V6.75A.75.75 0 0 1 9 6Zm6.75 3a.75.75 0 0 0-1.5 0v8.25a.75.75 0 0 0 1.5 0V9Z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-bold text-gray-900">Peta Arah Aliran Air Tanah</h2>
+                      <p className="text-sm text-gray-500">Peta arah aliran air tanah Desa Gadungan</p>
+                    </div>
+                  </div>
+                </div>
+                {/* PDF Container */}
+                <div className="relative flex h-[650px] w-full flex-col items-center justify-center bg-gray-50 p-0 text-center">
+                  <iframe src="/peta/PETA_ARAH_ALIRAN_AIR_TANAH.pdf" className="absolute inset-0 w-full h-full border-0" title="Peta Arah Aliran Air Tanah Desa Gadungan" />
+                </div>
+              </div>
+            </ScrollReveal>
+          )}
+
+          {/* Peta Administrasi Dusun Beku — PDF Embed */}
+          {activeTab === "administrasidusunbeku" && (
+            <ScrollReveal variant="fade" key="administrasidusunbeku">
+              <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/60">
+                <div className="border-b border-gray-100 bg-white px-6 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+                        <path fillRule="evenodd" d="M8.161 2.58a1.875 1.875 0 0 1 1.678 0l4.993 2.498c.106.052.23.052.336 0l3.869-1.935A1.875 1.875 0 0 1 21.75 4.82v12.485c0 .71-.401 1.36-1.037 1.677l-4.875 2.437a1.875 1.875 0 0 1-1.676 0l-4.994-2.497a.375.375 0 0 0-.336 0l-3.868 1.935A1.875 1.875 0 0 1 2.25 19.18V6.695c0-.71.401-1.36 1.036-1.677l4.875-2.437ZM9 6a.75.75 0 0 1 .75.75V15a.75.75 0 0 1-1.5 0V6.75A.75.75 0 0 1 9 6Zm6.75 3a.75.75 0 0 0-1.5 0v8.25a.75.75 0 0 0 1.5 0V9Z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-bold text-gray-900">Peta Administrasi Dusun Beku</h2>
+                      <p className="text-sm text-gray-500">Batas wilayah administrasi Dusun Beku</p>
+                    </div>
+                  </div>
+                </div>
+                {/* PDF Container */}
+                <div className="relative flex h-[650px] w-full flex-col items-center justify-center bg-gray-50 p-0 text-center">
+                  <iframe src="/peta/Peta_Administrasi_Dusun_Beku.pdf" className="absolute inset-0 w-full h-full border-0" title="Peta Administrasi Dusun Beku" />
                 </div>
               </div>
             </ScrollReveal>
