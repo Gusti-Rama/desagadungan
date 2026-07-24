@@ -56,6 +56,7 @@ export default async function SaranaPrasaranaPage() {
                       <ZoomableImage
                         src={fac.foto}
                         alt={fac.name}
+                        gallery={fac.galeri}
                         wrapperClassName="group relative cursor-pointer overflow-hidden h-full w-full"
                         imageClassName="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />

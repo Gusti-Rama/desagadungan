@@ -84,32 +84,25 @@ export default async function HomePage() {
           ============================================ */}
       <section
         id="hero"
-        className="relative overflow-hidden bg-gradient-to-br from-emerald-800 via-emerald-700 to-emerald-900"
+        className="relative overflow-hidden bg-emerald-950"
       >
-        {/* Decorative background elements */}
-        <div className="absolute inset-0">
-          <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-emerald-600/20 blur-3xl animate-float" />
-          <div className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-emerald-500/15 blur-3xl animate-float-delayed" />
-          <div className="absolute right-1/4 top-1/3 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl animate-float" />
-          {/* Subtle grid pattern overlay */}
-          <div
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }}
-          />
-        </div>
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/hero.webm" type="video/webm" />
+        </video>
+
+        {/* Overlays to ensure text readability and maintain emerald theme */}
+        <div className="absolute inset-0 bg-emerald-950/30 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-900/30" />
 
         <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
           <div className="max-w-3xl">
-            {/* Badge */}
-            <div className="animate-fade-in-up mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm text-emerald-100 backdrop-blur-sm ring-1 ring-white/20">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              Portal Resmi Desa
-            </div>
-
             {/* Heading */}
             <h1 className="animate-fade-in-up animation-delay-100 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               Selamat Datang di{" "}
