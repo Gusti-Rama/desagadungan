@@ -2,8 +2,8 @@ import Link from "next/link";
 import Script from "next/script";
 import { reader } from "@/lib/reader";
 import NewsCard from "@/components/NewsCard";
-import FacilitiesCarousel from "@/components/FacilitiesCarousel";
 import ScrollReveal from "@/components/ScrollReveal";
+import Image from "next/image";
 
 /**
  * Beranda (Home Page) — The main landing page for Desa Gadungan.
@@ -335,7 +335,7 @@ export default async function HomePage() {
       {/* ============================================
           LAYANAN INFORMASI
           ============================================ */}
-      <section id="layanan-informasi" className="bg-gray-50/50 py-16 sm:py-20 lg:py-24">
+      <section id="layanan-informasi" className="border-t border-gray-200/60 bg-gray-50/50 py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal variant="fade-up">
             <div className="mb-12 text-center">
@@ -418,7 +418,7 @@ export default async function HomePage() {
       {/* ============================================
           SARANA & PRASARANA SECTION
           ============================================ */}
-      <section id="sarana-prasarana" className="bg-white py-16 sm:py-20 lg:py-24">
+      <section id="sarana-prasarana" className="border-t border-gray-200/60 bg-white py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal variant="fade-up">
             <div className="mb-8 text-center">
@@ -435,36 +435,59 @@ export default async function HomePage() {
           </ScrollReveal>
         </div>
 
-        {/* Carousel Component */}
-        <FacilitiesCarousel facilities={formattedFacilities} limit={4} />
+        {/* Facilities Grid */}
+        <div className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {formattedFacilities.slice(0, 3).map((fac) => (
+              <div
+                key={fac.slug}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:shadow-md"
+              >
+                <div className="relative flex aspect-[16/10] w-full flex-col items-center justify-center bg-emerald-50 overflow-hidden">
+                  {fac.foto ? (
+                    <Image
+                      src={fac.foto}
+                      alt={fac.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="h-12 w-12 text-emerald-300">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+                <div className="relative flex flex-1 flex-col p-6">
+                  <h3 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-emerald-700">{fac.name}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
 
-        {/* View All Link */}
-        <div className="mt-10 text-center">
-          <Link
-            href="/sarana-prasarana"
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-50 px-6 py-3 text-sm font-semibold text-emerald-700 transition-all duration-300 hover:bg-emerald-100"
-          >
-            Lihat Semua Fasilitas
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="h-4 w-4"
+          {/* View All Button */}
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="/sarana-prasarana"
+              className="group inline-flex items-center gap-3 rounded-full bg-emerald-600 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-emerald-900/20 ring-1 ring-emerald-500/50 transition-all duration-300 hover:bg-emerald-500 hover:shadow-2xl hover:shadow-emerald-900/30 hover:-translate-y-1 hover:scale-105"
             >
-              <path
-                fillRule="evenodd"
-                d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </Link>
+              Lihat Semua Fasilitas
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 group-hover:translate-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                  <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+                </svg>
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ============================================
           BERITA TERBARU SECTION
           ============================================ */}
-      <section id="berita-terbaru" className="py-16 sm:py-20 lg:py-24">
+      <section id="berita-terbaru" className="border-t border-gray-200/60 bg-gray-50/50 py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <ScrollReveal variant="fade-up">
@@ -483,20 +506,37 @@ export default async function HomePage() {
 
           {/* News Grid */}
           {latestNews.length > 0 ? (
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {latestNews.map((news) => (
-                <NewsCard
-                  key={news.slug}
-                  slug={news.slug}
-                  title={news.title}
-                  date={news.date}
-                  coverImage={news.coverImage}
-                />
-              ))}
+            <div className="mt-8">
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {latestNews.map((news) => (
+                  <NewsCard
+                    key={news.slug}
+                    slug={news.slug}
+                    title={news.title}
+                    date={news.date}
+                    coverImage={news.coverImage}
+                  />
+                ))}
+              </div>
+
+              {/* View All Button */}
+              <div className="mt-10 flex justify-center">
+                <Link
+                  href="/berita"
+                  className="group inline-flex items-center gap-3 rounded-full bg-emerald-600 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-emerald-900/20 ring-1 ring-emerald-500/50 transition-all duration-300 hover:bg-emerald-500 hover:shadow-2xl hover:shadow-emerald-900/30 hover:-translate-y-1 hover:scale-105"
+                >
+                  Lihat Semua Berita
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 group-hover:translate-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                      <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                </Link>
+              </div>
             </div>
           ) : (
             // Empty state
-            <div className="rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50/50 p-12 text-center">
+            <div className="rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50/50 p-12 text-center mt-8">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -517,30 +557,6 @@ export default async function HomePage() {
               </p>
             </div>
           )}
-
-          {/* View All Link */}
-          {latestNews.length > 0 && (
-            <div className="mt-10 text-center">
-              <Link
-                href="/berita"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-50 px-6 py-3 text-sm font-semibold text-emerald-700 transition-all duration-300 hover:bg-emerald-100"
-              >
-                Lihat Semua Berita
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="h-4 w-4"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Link>
-            </div>
-          )}
         </div>
       </section>
 
@@ -549,7 +565,7 @@ export default async function HomePage() {
           ============================================ */}
       <section
         id="galeri-instagram"
-        className="border-t border-gray-100 bg-gray-50 py-16 sm:py-20 lg:py-24"
+        className="border-t border-gray-200/60 bg-white py-16 sm:py-20 lg:py-24"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
